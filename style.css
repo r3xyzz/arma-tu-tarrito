@@ -189,3 +189,32 @@ html,body{
 	/* Pantallas más anchas: asegurar cobertura horizontal */
 	#video-fondo{width:auto; height:100%;}
 }
+
+/* Responsive adicionales para componentes y layout */
+.components-grid{ /* regla por defecto, puede ser sobrescrita inline */
+	grid-template-columns: repeat(3,1fr);
+}
+
+@media (max-width:900px){
+	.components-grid{ grid-template-columns: repeat(2,1fr); gap:0.9rem; }
+	.model-section model-viewer{ height:420px; }
+}
+
+@media (max-width:600px){
+	/* Unicamente 1 columna en móviles */
+	.components-grid{ grid-template-columns: 1fr; gap:0.8rem; padding:0 0.6rem; }
+
+	/* Apilar imagen encima del texto en las tarjetas para mejor lectura */
+	.component-card{ display:flex !important; flex-direction:column !important; align-items:flex-start !important; gap:0.6rem !important; }
+	.component-card > div:first-child{ width:100% !important; height:140px !important; flex:0 0 auto !important; }
+	.component-card img{ width:100% !important; height:100% !important; object-fit:cover !important; }
+
+	/* Ajustes generales de layout para móviles */
+	.content{ padding:1.4rem 1rem 3rem; }
+	.topbar-inner{ padding:0.5rem 0.8rem; }
+	.model-section{ margin:1rem auto 0; }
+	.model-section model-viewer{ height:320px; }
+
+	/* Contact bar ya tiene reglas para móviles, aseguramos prioridad */
+	.contact-bar{ padding:0.8rem 0.8rem; }
+}
