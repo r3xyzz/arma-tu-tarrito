@@ -1,0 +1,11 @@
+Model Information:
+* title:	CPU Ryzen 5 3600
+* source:	https://sketchfab.com/3d-models/cpu-ryzen-5-3600-249fb5e8c1e94686a2c2b1cd6df72bc5
+* author:	Fochdog (https://sketchfab.com/bazyaev08)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "CPU Ryzen 5 3600" (https://sketchfab.com/3d-models/cpu-ryzen-5-3600-249fb5e8c1e94686a2c2b1cd6df72bc5) by Fochdog (https://sketchfab.com/bazyaev08) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

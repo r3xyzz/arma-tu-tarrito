@@ -1,0 +1,11 @@
+Model Information:
+* title:	AMD Ryzen 5 7600 CPU chip (AM5 socket)
+* source:	https://sketchfab.com/3d-models/amd-ryzen-5-7600-cpu-chip-am5-socket-a05c2732e0b847c2967e2c9282abd5f9
+* author:	arsdever (https://sketchfab.com/arsdever)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "AMD Ryzen 5 7600 CPU chip (AM5 socket)" (https://sketchfab.com/3d-models/amd-ryzen-5-7600-cpu-chip-am5-socket-a05c2732e0b847c2967e2c9282abd5f9) by arsdever (https://sketchfab.com/arsdever) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

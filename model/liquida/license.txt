@@ -1,0 +1,11 @@
+Model Information:
+* title:	Liquid CPU Cooling
+* source:	https://sketchfab.com/3d-models/liquid-cpu-cooling-7a0014c1141a4c25bc69912075526ee5
+* author:	Denzerru (https://sketchfab.com/Denzerru)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Liquid CPU Cooling" (https://sketchfab.com/3d-models/liquid-cpu-cooling-7a0014c1141a4c25bc69912075526ee5) by Denzerru (https://sketchfab.com/Denzerru) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

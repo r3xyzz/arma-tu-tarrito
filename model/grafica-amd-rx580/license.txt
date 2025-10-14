@@ -1,0 +1,11 @@
+Model Information:
+* title:	GPU RX 580
+* source:	https://sketchfab.com/3d-models/gpu-rx-580-6b3db05319be48028321ac94c4834bcb
+* author:	Alan2738 (https://sketchfab.com/alanroslon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "GPU RX 580" (https://sketchfab.com/3d-models/gpu-rx-580-6b3db05319be48028321ac94c4834bcb) by Alan2738 (https://sketchfab.com/alanroslon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

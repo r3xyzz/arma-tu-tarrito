@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nvidia Geforce RTX 3080 Founders Edition
+* source:	https://sketchfab.com/3d-models/nvidia-geforce-rtx-3080-founders-edition-4950a1d1ac8e4a6c83ca817fca5ced94
+* author:	DatSketch (https://sketchfab.com/DatSketch)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nvidia Geforce RTX 3080 Founders Edition" (https://sketchfab.com/3d-models/nvidia-geforce-rtx-3080-founders-edition-4950a1d1ac8e4a6c83ca817fca5ced94) by DatSketch (https://sketchfab.com/DatSketch) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

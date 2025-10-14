@@ -1,0 +1,11 @@
+Model Information:
+* title:	Aerocool KCAS, 1000W
+* source:	https://sketchfab.com/3d-models/aerocool-kcas-1000w-7d70eef820164ff69e5bb53f1cd2f860
+* author:	kkritikov (https://sketchfab.com/kkritikov)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Aerocool KCAS, 1000W" (https://sketchfab.com/3d-models/aerocool-kcas-1000w-7d70eef820164ff69e5bb53f1cd2f860) by kkritikov (https://sketchfab.com/kkritikov) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
