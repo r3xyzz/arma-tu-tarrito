@@ -1,0 +1,11 @@
+Model Information:
+* title:	Potato Pc
+* source:	https://sketchfab.com/3d-models/potato-pc-69f0bf39801e4fdf83bf584896935859
+* author:	Art_bor (https://sketchfab.com/Art_bor)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Potato Pc" (https://sketchfab.com/3d-models/potato-pc-69f0bf39801e4fdf83bf584896935859) by Art_bor (https://sketchfab.com/Art_bor) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

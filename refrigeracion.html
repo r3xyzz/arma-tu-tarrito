@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>CPU - Arma Tu Tarrito</title>
+    <title>Refrigeración - Arma Tu Tarrito</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <style>
-      .cards {max-width:1000px;margin:3rem auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:0 1rem}
+      /* ajustes locales para la página de refrigeración */
+      .cards {max-width:1000px;margin:3rem auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;padding:0 1rem}
       .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem}
-      .card h3{margin:0;font-size:1.05rem}
-      .card p{margin:0;color:#ccc;font-size:0.9rem}
-      .preview {height:200px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+      .card h3{margin:0;font-size:1.1rem}
+      .card p{margin:0;color:#ccc;font-size:0.95rem}
+      .preview {height:220px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
       .small-mv{width:100%;height:100%;}
-      @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)} }
-      @media(max-width:600px){.cards{grid-template-columns:1fr}}
+      @media(max-width:720px){.cards{grid-template-columns:1fr}.preview{height:180px}}
     </style>
   </head>
   <body>
-    <!-- barra coherente -->
+    <!-- topbar copiada de index.html para mantener coherencia -->
     <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
       <div class="topbar-inner">
         <div class="brand">Arma Tu Tarrito Oficial</div>
@@ -47,44 +47,39 @@
       </div>
     </nav>
 
-    <div style="position:fixed;inset:0;z-index:-2;background:url('video/fondo3.png') center/cover no-repeat fixed"></div>
+  <!-- Fondo específico para esta página (fondo3.png) -->
+  <div style="position:fixed;inset:0;z-index:-2;background:url('video/fondo3.png') center/cover no-repeat fixed"></div>
     <div class="overlay"></div>
 
     <main class="content" style="padding-top:3.6rem;">
-      <h2 style="color:#fff;text-align:center;margin-top:0">Procesadores</h2>
-      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Haz click en una tarjeta para cargar una vista 3D compacta del procesador.</p>
+      <h2 style="color:#fff;text-align:center;margin-top:0">Refrigeración</h2>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Elige entre refrigeración por aire o por líquido y visualiza un modelo 3D compacto en cada tarjeta.</p>
 
-      <section class="cards" aria-label="Opciones de CPU">
-        <article class="card" data-model="proce-amd/scene.gltf" tabindex="0" role="button">
-          <h3>AMD — Serie 1</h3>
-          <p>Ejemplo de procesador AMD (serie 1)</p>
-          <div class="preview">
-            <div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div>
+      <section class="cards" aria-label="Opciones de refrigeración">
+        <article class="card" data-model="aire/scene.gltf" tabindex="0" role="button" aria-pressed="false">
+          <h3>Refrigeración por aire</h3>
+          <p>Solución sencilla y económica. Haz click para ver un ejemplo.</p>
+          <div class="preview" data-target="aire">
+            <div style="color:#fff;opacity:0.85">Haz click para cargar vista 3D</div>
           </div>
         </article>
 
-        <article class="card" data-model="proce-amd-2/scene.gltf" tabindex="0" role="button">
-          <h3>AMD — Serie 2</h3>
-          <p>Ejemplo de procesador AMD (serie 2)</p>
-          <div class="preview">
-            <div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div>
-          </div>
-        </article>
-
-        <article class="card" data-model="proce-intel/scene.gltf" tabindex="0" role="button">
-          <h3>Intel — Serie</h3>
-          <p>Ejemplo de procesador Intel</p>
-          <div class="preview">
-            <div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div>
+        <article class="card" data-model="liquida/scene.gltf" tabindex="0" role="button" aria-pressed="false">
+          <h3>Refrigeración líquida</h3>
+          <p>Mayor capacidad de disipación. Haz click para ver un ejemplo.</p>
+          <div class="preview" data-target="liquida">
+            <div style="color:#fff;opacity:0.85">Haz click para cargar vista 3D</div>
           </div>
         </article>
       </section>
 
+      <p style="color:#bbb;text-align:center;font-size:0.9rem;max-width:900px;margin:1rem auto;">Los modelos se cargan sólo cuando haces click para evitar descargas innecesarias.</p>
     </main>
 
     <script src="javascript.js"></script>
     <script>
       (function(){
+        // comportamiento de las tarjetas interactiva
         function createSmallViewer(modelPath){
           const mv = document.createElement('model-viewer');
           mv.setAttribute('src', modelPath);
@@ -92,18 +87,22 @@
           mv.setAttribute('auto-rotate','');
           mv.setAttribute('exposure','1');
           mv.setAttribute('shadow-intensity','0.8');
-          mv.style.width = '100%'; mv.style.height = '100%';
+          mv.setAttribute('style','width:100%;height:100%;display:block;');
           return mv;
         }
 
         document.querySelectorAll('.card').forEach(card=>{
           const preview = card.querySelector('.preview');
-          const modelPath = card.dataset.model;
+          const modelPath = card.getAttribute('data-model');
           let loaded = false;
+
           function loadModel(){
             if(loaded) return;
+            // limpiar preview y añadir model-viewer reducido
             preview.innerHTML = '';
             const mv = createSmallViewer(modelPath);
+            mv.classList.add('small-mv');
+            // show a tiny loader while it loads
             const loader = document.createElement('div');
             loader.style.cssText = 'position:absolute;color:#fff;pointer-events:none;';
             preview.appendChild(loader);
@@ -113,7 +112,8 @@
             loaded = true;
             card.setAttribute('aria-pressed','true');
           }
-          card.addEventListener('click', ()=> loadModel());
+
+          card.addEventListener('click', ()=>{ loadModel(); });
           card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadModel(); } });
         });
       })();

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Almacenamiento - Arma Tu Tarrito</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <style>
+      /* estilos locales iguales a refrigeracion */
+      .cards {max-width:1000px;margin:3rem auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;padding:0 1rem}
+      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;cursor:default;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem}
+      .card h3{margin:0;font-size:1.1rem}
+      .card p{margin:0;color:#ccc;font-size:0.95rem}
+      .preview {height:220px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+      @media(max-width:720px){.cards{grid-template-columns:1fr}.preview{height:180px}}
+    </style>
+  </head>
+  <body>
+    <!-- topbar copiada de index.html -->
+    <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+      <div class="topbar-inner">
+        <div class="brand">Arma Tu Tarrito Oficial</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <ul class="menu">
+          <li class="has-dropdown">
+            <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+            <ul class="dropdown" aria-label="submenu productos">
+              <li><a href="cpu.html">CPU</a></li>
+              <li><a href="grafica.html">Gráfica</a></li>
+              <li><a href="ram.html">RAM</a></li>
+              <li><a href="gabinete.html">Gabinete</a></li>
+              <li><a href="refrigeracion.html">Refrigeracion</a></li>
+              <li><a href="almacenamiento.html">Almacenamiento</a></li>
+              <li><a href="fuentepc.html">Fuente de poder</a></li>
+              <li><a href="motherboard.html">Tarjeta madre</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html">Armador de tarrito</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+          <li><a href="quiero-probar.html">Quiero probar</a></li>
+          <li><a href="info.html">Quienes somos ?</a></li>
+          <li><a href="carrito.html">Carrito</a></li>
+          <li><a>Contacto: armatutarrito@gmail.com</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Fondo reutilizando fondo3.png -->
+    <div style="position:fixed;inset:0;z-index:-2;background:url('video/fondo3.png') center/cover no-repeat fixed"></div>
+    <div class="overlay"></div>
+
+    <main class="content" style="padding-top:3.6rem;">
+      <h2 style="color:#fff;text-align:center;margin-top:0">Almacenamiento</h2>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Actualmente no tenemos modelos 3D para las unidades de almacenamiento. Te notificaremos cuando haya stock disponible.</p>
+
+      <section class="cards" aria-label="Opciones de almacenamiento">
+        <article class="card" tabindex="0">
+          <h3>SSD</h3>
+          <p>Unidades NVMe y SATA — No hay modelos 3D disponibles actualmente.</p>
+          <div class="preview">
+            <div style="color:#fff;text-align:center;padding:0 1rem;">No hay modelos 3D disponibles. Se le notificará cuando haya stock.</div>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3>HDD</h3>
+          <p>Discos mecánicos — No hay modelos 3D disponibles actualmente.</p>
+          <div class="preview">
+            <div style="color:#fff;text-align:center;padding:0 1rem;">No hay modelos 3D disponibles. Se le notificará cuando haya stock.</div>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <script src="javascript.js"></script>
+  </body>
+</html>

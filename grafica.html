@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tarjetas gráficas - Arma Tu Tarrito</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <style>
+      .cards {max-width:1100px;margin:3rem auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:0 1rem}
+      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem}
+      .card h3{margin:0;font-size:1.05rem}
+      .card p{margin:0;color:#ccc;font-size:0.9rem}
+      .preview {height:220px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+      .small-mv{width:100%;height:100%;}
+      @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)} }
+      @media(max-width:600px){.cards{grid-template-columns:1fr}}
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+      <div class="topbar-inner">
+        <div class="brand">Arma Tu Tarrito Oficial</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <ul class="menu">
+          <li class="has-dropdown">
+            <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+            <ul class="dropdown" aria-label="submenu productos">
+              <li><a href="cpu.html">CPU</a></li>
+              <li><a href="grafica.html">Gráfica</a></li>
+              <li><a href="ram.html">RAM</a></li>
+              <li><a href="gabinete.html">Gabinete</a></li>
+              <li><a href="refrigeracion.html">Refrigeracion</a></li>
+              <li><a href="almacenamiento.html">Almacenamiento</a></li>
+              <li><a href="fuentepc.html">Fuente de poder</a></li>
+              <li><a href="motherboard.html">Tarjeta madre</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html">Armador de tarrito</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+          <li><a href="quiero-probar.html">Quiero probar</a></li>
+          <li><a href="info.html">Quienes somos ?</a></li>
+          <li><a href="carrito.html">Carrito</a></li>
+          <li><a>Contacto: armatutarrito@gmail.com</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div style="position:fixed;inset:0;z-index:-2;background:url('video/fondo3.png') center/cover no-repeat fixed"></div>
+    <div class="overlay"></div>
+
+    <main class="content" style="padding-top:3.6rem;">
+      <h2 style="color:#fff;text-align:center;margin-top:0">Tarjetas gráficas</h2>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Haz click en una tarjeta para cargar una vista 3D compacta de la gráfica.</p>
+
+      <section class="cards" aria-label="Opciones de gráfica">
+        <article class="card" data-model="grafica-amd-rx480/scene.gltf" tabindex="0" role="button">
+          <h3>AMD RX 480</h3>
+          <p>Ejemplo RX 480</p>
+          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+        </article>
+
+        <article class="card" data-model="grafica-amd-rx580/scene.gltf" tabindex="0" role="button">
+          <h3>AMD RX 580</h3>
+          <p>Ejemplo RX 580</p>
+          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+        </article>
+
+        <article class="card" data-model="grafica-amd-rx6700xt/scene.gltf" tabindex="0" role="button">
+          <h3>AMD RX 6700 XT</h3>
+          <p>Ejemplo RX 6700 XT</p>
+          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+        </article>
+
+        <article class="card" data-model="grafica-nvidia-3060/scene.gltf" tabindex="0" role="button">
+          <h3>NVIDIA RTX 3060</h3>
+          <p>Ejemplo RTX 3060</p>
+          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+        </article>
+
+        <article class="card" data-model="grafica-nvidia-3080/scene.gltf" tabindex="0" role="button">
+          <h3>NVIDIA RTX 3080</h3>
+          <p>Ejemplo RTX 3080</p>
+          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+        </article>
+
+        <article class="card" data-model="grafica-nvidia-3090/scene.gltf" tabindex="0" role="button">
+          <h3>NVIDIA RTX 3090</h3>
+          <p>Ejemplo RTX 3090</p>
+          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+        </article>
+
+        <article class="card" data-model="grafica-nvidia-4080/scene.gltf" tabindex="0" role="button">
+          <h3>NVIDIA RTX 4080</h3>
+          <p>Ejemplo RTX 4080</p>
+          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+        </article>
+      </section>
+
+    </main>
+
+    <script src="javascript.js"></script>
+    <script>
+      (function(){
+        function createSmallViewer(modelPath){
+          const mv = document.createElement('model-viewer');
+          mv.setAttribute('src', modelPath);
+          mv.setAttribute('camera-controls','');
+          mv.setAttribute('auto-rotate','');
+          mv.setAttribute('exposure','1');
+          mv.setAttribute('shadow-intensity','0.8');
+          mv.style.width = '100%'; mv.style.height = '100%';
+          return mv;
+        }
+
+        document.querySelectorAll('.card').forEach(card=>{
+          const preview = card.querySelector('.preview');
+          const modelPath = card.dataset.model;
+          let loaded = false;
+          function loadModel(){
+            if(loaded) return;
+            preview.innerHTML = '';
+            const mv = createSmallViewer(modelPath);
+            const loader = document.createElement('div');
+            loader.style.cssText = 'position:absolute;color:#fff;pointer-events:none;';
+            preview.appendChild(loader);
+            mv.addEventListener('load', ()=>{ loader.remove(); });
+            mv.addEventListener('error', (e)=>{ loader.textContent = 'Error al cargar vista 3D'; console.error(e); });
+            preview.appendChild(mv);
+            loaded = true;
+            card.setAttribute('aria-pressed','true');
+          }
+          card.addEventListener('click', ()=> loadModel());
+          card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadModel(); } });
+        });
+      })();
+    </script>
+  </body>
+</html>
