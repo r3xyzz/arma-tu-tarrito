@@ -8,213 +8,301 @@
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   </head>
   <body>
-    <!-- Topbar con búsqueda -->
-    <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
-      <div class="topbar-inner">
-        <div class="brand">Arma Tu Tarrito Oficial</div>
-        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
-        <ul class="menu">
-          <li><a href="index.html">Armador de tarrito</a></li>
-          <li class="has-dropdown">
-            <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
-            <ul class="dropdown" aria-label="submenu productos">
-              <li><a href="#">CPU</a></li>
-              <li><a href="#">Gráfica</a></li>
-              <li><a href="#">RAM</a></li>
-              <li><a href="#">Fuente de poder</a></li>
-              <li><a href="#">Tarjeta madre</a></li>
+        <!-- Topbar con búsqueda -->
+        <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+          <div class="topbar-inner">
+            <div class="brand">Arma Tu Tarrito Oficial</div>
+            <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+            <ul class="menu">
+              <li><a href="index.html">Armador de tarrito</a></li>
+              <li class="has-dropdown">
+                <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+                <ul class="dropdown" aria-label="submenu productos">
+                  <li><a href="#">CPU</a></li>
+                  <li><a href="#">Gráfica</a></li>
+                  <li><a href="#">RAM</a></li>
+                  <li><a href="#">Fuente de poder</a></li>
+                  <li><a href="#">Tarjeta madre</a></li>
+                </ul>
+              </li>
+              <li><a href="comunidad.html">Comunidad</a></li>
+              <li><a href="quiero-probar.html">Quiero probar</a></li>
+              <li><a href="info.html">Quienes somos ?</a></li>
+              <li><a href="#">Contacto: armatutarrito@gmail.com</a></li>
             </ul>
-          </li>
-          <li><a href="comunidad.html">Comunidad</a></li>
-          <li><a href="quiero-probar.html">Quiero probar</a></li>
-          <li><a href="info.html">Quienes somos ?</a></li>
-          <li><a href="#">Contacto: armatutarrito@gmail.com</a></li>
-+
-        </ul>
-      </div>
-    </nav>
-+
+          </div>
+        </nav>
 
-    <!-- Video fondo -->
-+
-    <video id="video-fondo" autoplay muted loop playsinline>
-      <source src="video/video-fondo2.mp4" type="video/mp4">
-      Tu navegador no soporta video HTML5.
-    </video>
-+
-    <div class="overlay"></div>
-+
-    <!-- Contenido principal -->
-+
-    <main class="content" style="padding-top:3.6rem;">
-      <h2 style="margin-top:0;color:#fff;text-align:center;">Prueba el modelo 3D</h2>
+        <!-- Video fondo -->
+        <video id="video-fondo" autoplay muted loop playsinline>
+          <source src="video/video-fondo2.mp4" type="video/mp4">
+          Tu navegador no soporta video HTML5.
+        </video>
 
-      <section class="model-section" aria-label="Vista 3D del producto">
-        <model-viewer src="set-up/scene.gltf" alt="Modelo 3D del PC" camera-controls auto-rotate exposure="1" shadow-intensity="1" ar ar-scale="auto" style="width:100%;height:520px;"> 
-        </model-viewer>
-+
-      </section>
+        <div class="overlay"></div>
 
-                        <!-- Botón Benchmark -->
-                        <div style="max-width:1100px;margin:0.8rem auto 0;display:flex;justify-content:flex-end;">
-                                <button id="benchmark-btn" class="btn" style="margin:0;">Benchmark</button>
-                        </div>
+        <!-- Contenido principal -->
+        <main class="content" style="padding-top:3.6rem;">
+          <h2 style="margin-top:0;color:#fff;text-align:center;">Prueba el modelo 3D</h2>
 
-                        <!-- Recuadro de benchmark (oculto por defecto) -->
-                        <div id="benchmark-box" role="dialog" aria-hidden="true" style="display:none;position:fixed;left:50%;top:12%;transform:translateX(-50%);max-width:900px;width:90%;background:rgba(0,0,0,0.92);color:#fff;border-radius:10px;padding:1rem 1.2rem;z-index:20;box-shadow:0 8px 40px rgba(0,0,0,0.6);">
-                                <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
-                                        <h3 style="margin:0;">Benchmark estimado</h3>
-                                        <button id="benchmark-close" aria-label="Cerrar benchmark" class="contact-close" style="font-size:1.1rem;">✕</button>
-                                </div>
-                                <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0.6rem 0;">
+          <section class="model-section" aria-label="Vista 3D del producto" style="display:none;opacity:0;transition:opacity 400ms ease;" aria-hidden="true">
+            <div id="model-loading" style="color:#fff;text-align:center;padding:1rem;display:none;">Cargando modelo 3D...</div>
+            <!-- Contenedor vacío: el model-viewer se creará dinámicamente al guardar -->
+            <div id="model-container" data-src="set-up/scene.gltf" style="width:100%;height:520px;"></div>
+          </section>
 
-                                <div style="max-height:60vh;overflow:auto;padding-right:0.4rem;">
-                                        <p>¡Genial! Tu configuración es la base de un equipo de gama media-alta muy balanceado y potente, ideal para juegos en alta definición (1080p) y productividad exigente.</p>
+          <!-- Componentes: 8 recuadros expandibles con + -->
+          <section class="components-grid" style="max-width:1100px;margin:1.2rem auto 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
 
-                                        <p>Dado que las especificaciones de CPU (Ryzen 5) y GPU (RTX 3060) pueden variar ligeramente (ej. Ryzen 5 5600/5600X, RTX 3060 de 12GB), estos son los benchmarks promedio y el consumo estimado de potencia máxima.</p>
+            <!-- CPU -->
+            <div class="component-card">
+                  <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                    <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                    <div style="flex:1;color:#fff;"><strong>Procesador (CPU)</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">Elige tu CPU</div></div>
+                    <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                  </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="cpu-option" value="ryzen5600"> AMD Ryzen 5 5600X</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="cpu-option" value="ryzen7600"> AMD Ryzen 7 7700X</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="cpu-option" value="i5"> Intel Core i5-12400</label>
+              </div>
+            </div>
 
-                                        <h4>Benchmark de Rendimiento: Ryzen 5 y RTX 3060</h4>
-                                        <p>🎮 Gaming (FPS estimados)</p>
-                                        <p>Esta combinación es ideal para jugar en resoluciones 1080p y muy capaz en 1440p. Los valores son promedios con ajustes gráficos en Alto/Ultra:</p>
+            <!-- GPU -->
+            <div class="component-card">
+              <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                  <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                  <div style="flex:1;color:#fff;"><strong>Tarjeta de video (GPU)</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">Elige tu GPU</div></div>
+                  <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="gpu-option" value="rtx3060"> NVIDIA RTX 3060</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="gpu-option" value="rtx4060"> NVIDIA RTX 4060</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="gpu-option" value="rx6600"> AMD RX 6600 XT</label>
+              </div>
+            </div>
 
-                                        <table style="width:100%;border-collapse:collapse;color:#fff;margin-bottom:0.6rem;">
-                                                <thead>
-                                                        <tr style="text-align:left;border-bottom:1px solid rgba(255,255,255,0.06);">
-                                                                <th>Título (AAA y eSports)</th>
-                                                                <th>1080p (FPS)</th>
-                                                                <th>1440p (FPS)</th>
+            <!-- Motherboard -->
+            <div class="component-card">
+              <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                  <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                  <div style="flex:1;color:#fff;"><strong>Tarjeta madre</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">Selecciona chipset</div></div>
+                  <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="mobo-option" value="b550"> B550 (AM4)</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="mobo-option" value="x570"> X570 (AM4)</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="mobo-option" value="z690"> Z690 (LGA)</label>
+              </div>
+            </div>
 
-                                                                                <!-- Tarjetas de componentes debajo del modelo 3D -->
-                                                                                <section class="components-grid" style="max-width:1100px;margin:1.2rem auto 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+            <!-- RAM -->
+            <div class="component-card">
+              <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                  <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                  <div style="flex:1;color:#fff;"><strong>RAM</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">Capacidad y velocidad</div></div>
+                  <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="ram-option" value="16gb"> 16GB (2x8GB) DDR4-3200</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="ram-option" value="32gb"> 32GB (2x16GB) DDR4-3600</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="ram-option" value="64gb"> 64GB (4x16GB)</label>
+              </div>
+            </div>
 
-                                                                                        <!-- CPU -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/proce.jpg" alt="Imagen CPU" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">Procesador (CPU)</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">Ej: AMD Ryzen 5 5600X — 6 cores, 12 hilos — Ideal para gaming y productividad.</p>
-                                                                                                </div>
-                                                                                        </div>
+            <!-- Cooling -->
+            <div class="component-card">
+              <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                  <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                  <div style="flex:1;color:#fff;"><strong>Refrigeración</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">Tipo de cooling</div></div>
+                  <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="cool-option" value="air"> Aire (cooler stock/aftermarket)</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="cool-option" value="aio"> Líquida AIO 240mm</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="cool-option" value="custom"> Custom loop</label>
+              </div>
+            </div>
 
-                                                                                        <!-- GPU -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/grafica.png" alt="Imagen GPU" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">Tarjeta de video (GPU)</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">Ej: NVIDIA RTX 3060 — Excelente relación precio/rendimiento para 1080p/1440p.</p>
-                                                                                                </div>
-                                                                                        </div>
+            <!-- Storage -->
+            <div class="component-card">
+              <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                  <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                  <div style="flex:1;color:#fff;"><strong>Almacenamiento</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">SSD / HDD</div></div>
+                  <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="storage-option" value="nvme1tb"> NVMe 1TB</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="storage-option" value="ssd500"> SATA SSD 500GB</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="storage-option" value="hdd2tb"> HDD 2TB</label>
+              </div>
+            </div>
 
-                                                                                        <!-- Motherboard -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/mother.png" alt="Imagen Motherboard" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">Tarjeta madre (Motherboard)</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">Ej: B550 / Z690 — Conectividad, VRM y factores de forma (ATX, mATX, ITX).</p>
-                                                                                                </div>
-                                                                                        </div>
+            <!-- PSU -->
+            <div class="component-card">
+              <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                  <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                  <div style="flex:1;color:#fff;"><strong>Fuente de poder (PSU)</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">Potencia y eficiencia</div></div>
+                  <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="psu-option" value="650b"> 650W 80+ Bronze</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="psu-option" value="750g"> 750W 80+ Gold</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="psu-option" value="850g"> 850W 80+ Gold</label>
+              </div>
+            </div>
 
-                                                                                        <!-- RAM -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/ram.jpg" alt="Imagen RAM" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">RAM</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">Ej: 16GB (2x8GB) DDR4-3200 — Buen equilibrio entre precio y rendimiento.</p>
-                                                                                                </div>
-                                                                                        </div>
+            <!-- Case -->
+            <div class="component-card">
+              <div class="card-header" style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;">
+                  <div class="thumb-placeholder" aria-hidden="true" style="width:64px;height:48px;border-radius:6px;background:rgba(255,255,255,0.04);flex:0 0 auto;"></div>
+                  <div style="flex:1;color:#fff;"><strong>Gabinete (Case)</strong><div style="font-size:0.9rem;opacity:0.9;color:#ddd;">Tamaño y flujo de aire</div></div>
+                  <button class="component-toggle btn" aria-expanded="false" style="flex:0 0 36px;height:36px;border-radius:6px;">+</button>
+                </div>
+              <div class="options-panel" style="display:none;padding:0 0.75rem 0.75rem;">
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="case-option" value="mid"> Mid-Tower</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="case-option" value="miniitx"> Mini-ITX</label>
+                <label style="display:block;margin-bottom:0.3rem;color:#fff;"><input type="radio" name="case-option" value="full"> Full-Tower</label>
+              </div>
+            </div>
 
-                                                                                        <!-- Ventiladores / Cooling -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/refrigeracion-aire.jpg" alt="Imagen Cooling" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">Ventiladores / Refrigeración</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">Refrigeración por aire o líquida según necesidad de ruido y temperatura.</p>
-                                                                                                </div>
-                                                                                        </div>
+          </section>
 
-                                                                                        <!-- Almacenamiento -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/disco.jpg" alt="Imagen Almacenamiento" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">Almacenamiento</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">SSD NVMe 1TB + HDD secundario para almacenamiento masivo (opcional).</p>
-                                                                                                </div>
-                                                                                        </div>
+        </main>
 
-                                                                                        <!-- Fuente de poder -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/fuente.jpg" alt="Imagen Fuente de poder" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">Fuente de poder (PSU)</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">Ej: 650W 80+ Bronze — Margen para upgrades y eficiencia energética.</p>
-                                                                                                </div>
-                                                                                        </div>
+        <div style="max-width:1100px;margin:0 auto 2rem;display:flex;justify-content:flex-end;">
+          <button id="save-selection" class="btn">Guardar selección</button>
+        </div>
 
-                                                                                        <!-- Gabinete -->
-                                                                                        <div class="component-card" style="background:rgba(0,0,0,0.45);padding:0.8rem;border-radius:10px;color:#fff;display:flex;align-items:center;gap:0.9rem;">
-                                                                                                <div style="flex:0 0 72px; width:72px; height:72px; overflow:hidden; border-radius:8px; background:rgba(255,255,255,0.04);">
-                                                                                                        <img src="photo/ganinete.jpg" alt="Imagen Gabinete" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
-                                                                                                </div>
-                                                                                                <div style="flex:1;">
-                                                                                                        <h4 style="margin:0 0 0.25rem 0;font-size:1rem;">Gabinete (Case)</h4>
-                                                                                                        <p style="margin:0;opacity:0.95;font-size:0.95rem;">Ej: Mid-Tower con buen flujo de aire y soporte para GPU larga.</p>
-                                                                                                </div>
-                                                                                        </div>
+        <!-- Barra de contacto inferior -->
+        <div class="contact-bar" id="contact-bar" role="region" aria-label="Recibir actualizaciones">
+          <form id="contact-form" class="contact-form">
+            <label for="contact-email" class="contact-label">Recibir más info</label>
+            <input id="contact-email" name="email" type="email" placeholder="tu-correo@gmail.com" class="contact-input" required />
+            <button type="submit" class="btn contact-submit">Enviar</button>
+            <button type="button" class="contact-close" id="contact-close" aria-label="Cerrar">✕</button>
+          </form>
+          <div id="contact-msg" class="contact-msg" aria-live="polite"></div>
+        </div>
 
-                                                                                </section>
+        <script src="javascript.js"></script>
 
-                                                                        </main>
+        <script>
+          (function(){
+            // Toggle para las tarjetas de componentes
+            document.querySelectorAll('.component-toggle').forEach(btn=>{
+              btn.addEventListener('click', ()=>{
+                const card = btn.closest('.component-card');
+                if(!card) return;
+                const panel = card.querySelector('.options-panel');
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                if(panel){
+                  panel.style.display = expanded ? 'none' : 'block';
+                  btn.setAttribute('aria-expanded', (!expanded).toString());
+                  btn.textContent = expanded ? '+' : '−';
+                }
+              });
+            });
+          })();
+        </script>
 
-                                                                        <!-- Barra de contacto inferior -->
-                                                                        <div class="contact-bar" id="contact-bar" role="region" aria-label="Recibir actualizaciones">
-                                                                                <form id="contact-form" class="contact-form">
-                                                                                        <label for="contact-email" class="contact-label">Recibir más info</label>
-                                                                                        <input id="contact-email" name="email" type="email" placeholder="tu-correo@gmail.com" class="contact-input" required />
-                                                                                        <button type="submit" class="btn contact-submit">Enviar</button>
-                                                                                        <button type="button" class="contact-close" id="contact-close" aria-label="Cerrar">✕</button>
-                                                                                </form>
-                                                                                <div id="contact-msg" class="contact-msg" aria-live="polite"></div>
-                                                                        </div>
+        <script>
+          (function(){
+            const btnSave = document.getElementById('save-selection');
+            function readSelections(){
+              const names = [
+                'cpu-option','gpu-option','mobo-option','ram-option',
+                'cool-option','storage-option','psu-option','case-option'
+              ];
+              const out = {};
+              names.forEach(n=>{
+                const el = document.querySelector('input[name="'+n+'"]:checked');
+                out[n] = el ? el.value : null;
+              });
+              return out;
+            }
+            function showMsg(text){
+              let msg = document.getElementById('selection-msg');
+              if(!msg){
+                msg = document.createElement('div');
+                msg.id = 'selection-msg';
+                msg.style.cssText = 'position:fixed;right:1rem;bottom:1rem;background:#0b0;color:#fff;padding:0.6rem 0.8rem;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.4);z-index:60;';
+                document.body.appendChild(msg);
+              }
+              msg.textContent = text;
+              setTimeout(()=>{ msg.remove(); }, 2200);
+            }
+            function showModel(){
+              const ms = document.querySelector('.model-section');
+              if(!ms) return;
+              const loader = document.getElementById('model-loading');
+              const modelContainer = document.getElementById('model-container');
 
-                                                                        <script src="javascript.js"></script>
-                                                                        <script>
-                                                                                (function(){
-                                                                                        const btn = document.getElementById('benchmark-btn');
-                                                                                        const box = document.getElementById('benchmark-box');
-                                                                                        const close = document.getElementById('benchmark-close');
-                                                                                        if(!btn || !box) return;
+              // If there is already a model-viewer inside, just show it
+              if(modelContainer.querySelector('model-viewer')){
+                if(loader) loader.style.display = 'none';
+                ms.style.display = 'block';
+                requestAnimationFrame(()=>{ ms.style.opacity = '1'; ms.setAttribute('aria-hidden','false'); });
+                return;
+              }
 
-                                                                                        function openBox(){
-                                                                                                box.style.display = 'block';
-                                                                                                box.setAttribute('aria-hidden','false');
-                                                                                                // focus para accesibilidad
-                                                                                                box.focus?.();
-                                                                                        }
-                                                                                        function closeBox(){
-                                                                                                box.style.display = 'none';
-                                                                                                box.setAttribute('aria-hidden','true');
-                                                                                        }
+              const dataSrc = modelContainer.getAttribute('data-src') || 'set-up/scene.gltf';
 
-                                                                                        btn.addEventListener('click', openBox);
-                                                                                        if(close) close.addEventListener('click', closeBox);
+              // create model-viewer element dynamically to avoid any preloading
+              const mv = document.createElement('model-viewer');
+              mv.id = 'model-viewer';
+              mv.setAttribute('alt', 'Modelo 3D del PC');
+              mv.setAttribute('src', dataSrc);
+              mv.setAttribute('camera-controls', '');
+              mv.setAttribute('auto-rotate', '');
+              mv.setAttribute('exposure', '1');
+              mv.setAttribute('shadow-intensity', '1');
+              mv.setAttribute('ar', '');
+              mv.setAttribute('ar-scale', 'auto');
+              mv.style.width = '100%';
+              mv.style.height = '100%';
 
-                                                                                        // cerrar con Escape
-                                                                                        document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeBox(); });
-                                                                                })();
-                                                                        </script>
-                                                                </body>
-                                                        </html>
+              // show loader
+              if(loader) loader.style.display = 'block';
+
+              mv.addEventListener('load', function onLoad(){
+                if(loader) loader.style.display = 'none';
+                mv.removeEventListener('load', onLoad);
+                ms.style.display = 'block';
+                requestAnimationFrame(()=>{ ms.style.opacity = '1'; ms.setAttribute('aria-hidden','false'); });
+              });
+              mv.addEventListener('error', function onErr(e){
+                if(loader) loader.style.display = 'none';
+                console.error('Error cargando modelo', e);
+                mv.removeEventListener('error', onErr);
+              });
+
+              modelContainer.appendChild(mv);
+            }
+
+            // Si ya hay selección previa, mostrar modelo al cargar
+            if(localStorage.getItem('arma-seleccion')){
+              showModel();
+            }
+
+            if(btnSave){
+              btnSave.addEventListener('click', ()=>{
+                const sel = readSelections();
+                try{
+                  localStorage.setItem('arma-seleccion', JSON.stringify(sel));
+                  // marcar que el usuario guardó y mostrar modelo
+                  localStorage.setItem('arma-model-visible','1');
+                  showModel();
+                  showMsg('Selección guardada — modelo activado');
+                }catch(e){
+                  showMsg('No se pudo guardar la selección');
+                  console.error(e);
+                }
+              });
+            }
+          })();
+        </script>
+
+      </body>
+    </html>
+

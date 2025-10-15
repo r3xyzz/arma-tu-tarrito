@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Carrito - Arma Tu Tarrito</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </head>
+  <body>
+    <!-- Barra de tareas superior (misma que en index) -->
+    <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+      <div class="topbar-inner">
+        <div class="brand">Arma Tu Tarrito Oficial</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <ul class="menu">
+          <li class="has-dropdown">
+            <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+            <ul class="dropdown" aria-label="submenu productos">
+              <li><a href="#">CPU</a></li>
+              <li><a href="#">Gráfica</a></li>
+              <li><a href="#">RAM</a></li>
+              <li><a href="#">Fuente de poder</a></li>
+              <li><a href="#">Tarjeta madre</a></li>
+            </ul>
+          </li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+          <li><a href="quiero-probar.html">Quiero probar</a></li>
+          <li><a href="#">Regístrate</a></li>
+          <li><a href="info.html">Quienes somos ?</a></li>
+          <li><a href="#">Contacto: armatutarrito@gmail.com</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Video fondo: preferir video-fondo3.mp4 si existe -->
+    <video id="video-fondo" autoplay muted loop playsinline>
+      <source src="video/video-fondo3.mp4" type="video/mp4">
+      <source src="video/video-fondo2.mp4" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
+
+    <div class="overlay"></div>
+
+    <!-- Contenido principal del carrito -->
+    <main class="content">
+      <h1>Tu carrito</h1>
+      <p class="muted">Aquí verás los componentes seleccionados para tu tarrito. Puedes revisar, eliminar o proceder al ensamblado.</p>
+
+      <section class="cart-list" style="max-width:1100px;margin:1.2rem auto;">
+        <article class="cart-item" style="display:flex;gap:1rem;align-items:center;padding:0.9rem;background:rgba(0,0,0,0.45);border-radius:10px;margin-bottom:0.8rem;">
+          <img src="photo/grafica.png" alt="GPU" style="width:84px;height:64px;object-fit:cover;border-radius:6px;">
+          <div style="flex:1;">
+            <h4 style="margin:0 0 0.2rem 0;color:#fff;">NVIDIA RTX 3060</h4>
+            <p style="margin:0;opacity:0.9;color:#ddd;">Tarjeta de video — 12GB GDDR6</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="color:#9fe;font-weight:600;">$329</div>
+            <button class="btn" style="margin-top:0.4rem;">Eliminar</button>
+          </div>
+        </article>
+
+        <article class="cart-item" style="display:flex;gap:1rem;align-items:center;padding:0.9rem;background:rgba(0,0,0,0.45);border-radius:10px;margin-bottom:0.8rem;">
+          <img src="photo/proce.jpg" alt="CPU" style="width:84px;height:64px;object-fit:cover;border-radius:6px;">
+          <div style="flex:1;">
+            <h4 style="margin:0 0 0.2rem 0;color:#fff;">AMD Ryzen 5 5600X</h4>
+            <p style="margin:0;opacity:0.9;color:#ddd;">Procesador — 6 cores / 12 hilos</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="color:#9fe;font-weight:600;">$199</div>
+            <button class="btn" style="margin-top:0.4rem;">Eliminar</button>
+          </div>
+        </article>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
+          <div style="color:#fff;font-weight:700;">Total estimado: <span style="color:#9fe;">$528</span></div>
+          <div>
+            <a class="btn" href="#">Proceder al ensamblado</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Barra de contacto inferior (misma que en index) -->
+    <div class="contact-bar" id="contact-bar" role="region" aria-label="Recibir actualizaciones">
+      <form id="contact-form" class="contact-form">
+        <label for="contact-email" class="contact-label">Recibir más info</label>
+        <input id="contact-email" name="email" type="email" placeholder="tu-correo@gmail.com" class="contact-input" required />
+        <button type="submit" class="btn contact-submit">Enviar</button>
+        <button type="button" class="contact-close" id="contact-close" aria-label="Cerrar">✕</button>
+      </form>
+      <div id="contact-msg" class="contact-msg" aria-live="polite"></div>
+    </div>
+
+    <script src="javascript.js"></script>
+  </body>
+</html>
