@@ -178,6 +178,27 @@
           <button id="save-selection" class="btn">Guardar selección</button>
         </div>
 
+        <!-- Botón Benchmark centrado -->
+        <div style="max-width:1100px;margin:0 auto 1rem;display:flex;justify-content:center;">
+          <button id="open-benchmark" class="btn" style="background:#1e88e5;color:#fff;">Benchmark</button>
+        </div>
+
+        <!-- Modal de Benchmark -->
+        <div id="benchmark-modal" role="dialog" aria-hidden="true" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);z-index:120;">
+          <div role="document" style="background:#0b0b0b;color:#fff;padding:1rem;border-radius:10px;max-width:720px;width:calc(100% - 2rem);box-shadow:0 12px 40px rgba(0,0,0,0.6);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+              <h3 style="margin:0;font-size:1.1rem;">Benchmark estimado</h3>
+              <button id="close-benchmark" aria-label="Cerrar benchmark" style="background:transparent;border:none;color:#fff;font-size:1.2rem;">✕</button>
+            </div>
+            <div id="benchmark-content" style="font-size:0.95rem;line-height:1.4;color:#e6e6e6;">
+              <p style="opacity:0.9;margin:0 0 0.6rem 0;">Calculando estimaciones basadas en tu selección...</p>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:0.75rem;">
+              <button id="benchmark-close-bottom" class="btn">Cerrar</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Barra de contacto inferior -->
         <div class="contact-bar" id="contact-bar" role="region" aria-label="Recibir actualizaciones">
           <form id="contact-form" class="contact-form">
@@ -304,6 +325,208 @@
                 }
               });
             }
+          })();
+        </script>
+
+        <script>
+          (function(){
+            const openBtn = document.getElementById('open-benchmark');
+            const modal = document.getElementById('benchmark-modal');
+            const closeBtn = document.getElementById('close-benchmark');
+            const closeBottom = document.getElementById('benchmark-close-bottom');
+            const content = document.getElementById('benchmark-content');
+
+            function safeGetSelection(){
+              try{
+                const raw = localStorage.getItem('arma-seleccion');
+                if(!raw) return null;
+                return JSON.parse(raw);
+              }catch(e){
+                return null;
+              }
+            }
+
+            // Heurística simple para estimar FPS según CPU/GPU seleccionadas
+            function estimateFPS(selection){
+              // Base scores for GPU (approx)
+              const gpuScores = {
+                'rtx3060': 70,
+                'rtx4060': 85,
+                'rx6600': 60,
+                'n/a': 45
+              };
+              // CPU influence multiplier
+              const cpuMult = {
+                'ryzen5600': 1.0,
+                'ryzen7600': 1.12,
+                'i5': 0.95,
+                'n/a': 0.9
+              };
+
+              const gpuKey = (selection && selection['gpu-option']) || 'n/a';
+              const cpuKey = (selection && selection['cpu-option']) || 'n/a';
+
+              const gpuBase = gpuScores[gpuKey] || gpuScores['n/a'];
+              const cpuFactor = cpuMult[cpuKey] || cpuMult['n/a'];
+
+              // Estimaciones para distintos perfiles (casual, exigente, AAA)
+              const casual = Math.round(gpuBase * cpuFactor * 1.0);
+              const exigente = Math.round(gpuBase * cpuFactor * 0.75);
+              const aaa = Math.round(gpuBase * cpuFactor * 0.55);
+
+                // Productividad: oficina no exige mucho; render/edición dependen más del CPU
+                const office = Math.round(120 * cpuFactor);
+                const render = Math.round(30 * cpuFactor);
+                const foto = Math.round(50 * cpuFactor);
+                const video = Math.round(25 * cpuFactor);
+
+                // Estimación de consumo eléctrico (W) basada en GPU+CPU y configuración
+                const gpuPower = {
+                  'rtx3060': 170,
+                  'rtx4060': 160,
+                  'rx6600': 160,
+                  'n/a': 120
+                };
+                const cpuPower = {
+                  'ryzen5600': 65,
+                  'ryzen7600': 105,
+                  'i5': 65,
+                  'n/a': 55
+                };
+
+                const baseSystem = 60; // placa, discos, ventiladores, etc.
+                const gpuP = gpuPower[gpuKey] || gpuPower['n/a'];
+                const cpuP = cpuPower[cpuKey] || cpuPower['n/a'];
+
+                // Consumptions for different profiles (approx)
+                const powerCasual = Math.round(baseSystem + cpuP * 0.6 + gpuP * 0.5);
+                const powerExigente = Math.round(baseSystem + cpuP * 0.9 + gpuP * 0.85);
+                const powerAAA = Math.round(baseSystem + cpuP * 1.0 + gpuP * 1.0);
+                const powerOffice = Math.round(baseSystem + cpuP * 0.4 + gpuP * 0.15);
+
+                // kWh/month and cost estimation (Chile) — tarifa asumida; configurable
+                const tarifaCLP = 220; // CLP por kWh (ajustable)
+                const daysPerMonth = 30;
+
+                function kwhPerMonth(avgWatts, hoursPerDay){
+                  return (avgWatts * hoursPerDay * daysPerMonth) / 1000;
+                }
+
+                // Asumir horas de uso por perfil
+                const hours = {
+                  casual: 2, // horas/día en juegos casuales
+                  exigente: 2, // horas/día en sesiones exigentes
+                  aaa: 1.5, // horas/día AAA
+                  office: 8, // jornada diaria
+                  render: 1, // render por día (promedio)
+                };
+
+                const kwhCasual = kwhPerMonth(powerCasual, hours.casual);
+                const kwhExigente = kwhPerMonth(powerExigente, hours.exigente);
+                const kwhAAA = kwhPerMonth(powerAAA, hours.aaa);
+                const kwhOffice = kwhPerMonth(powerOffice, hours.office);
+
+                const costCasual = Math.round(kwhCasual * tarifaCLP);
+                const costExigente = Math.round(kwhExigente * tarifaCLP);
+                const costAAA = Math.round(kwhAAA * tarifaCLP);
+                const costOffice = Math.round(kwhOffice * tarifaCLP);
+
+                // Añadir resultados al objeto retornado
+                return {
+                  casual, exigente, aaa,
+                  office, render, foto, video,
+                  gpu: gpuKey, cpu: cpuKey,
+                  power: { powerCasual, powerExigente, powerAAA, powerOffice },
+                  kwh: { kwhCasual, kwhExigente, kwhAAA, kwhOffice },
+                  cost: { costCasual, costExigente, costAAA, costOffice },
+                  tarifaCLP
+                };
+
+              return {
+                casual, exigente, aaa,
+                office, render, foto, video,
+                gpu: gpuKey, cpu: cpuKey
+              };
+            }
+
+            function renderBenchmark(est){
+              if(!est) return '<p>No hay selección guardada. Guarda tu configuración para obtener estimaciones más precisas.</p>';
+              return `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;">
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>Juegos casuales</strong>
+                    <div style="font-size:1.4rem;margin-top:0.4rem;color:#b9f6ca;">~ ${est.casual} FPS</div>
+                    <div style="opacity:0.9;font-size:0.85rem;margin-top:0.4rem;">Ejemplo: eSports/indies</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>Juegos exigentes</strong>
+                    <div style="font-size:1.4rem;margin-top:0.4rem;color:#fff59d;">~ ${est.exigente} FPS</div>
+                    <div style="opacity:0.9;font-size:0.85rem;margin-top:0.4rem;">Ejemplo: AAA a 1080p Alto</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>Juegos AAA</strong>
+                    <div style="font-size:1.4rem;margin-top:0.4rem;color:#ff8a80;">~ ${est.aaa} FPS</div>
+                    <div style="opacity:0.9;font-size:0.85rem;margin-top:0.4rem;">Gráficos Ultra / Ray tracing</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>Oficina</strong>
+                    <div style="font-size:1.2rem;margin-top:0.4rem;color:#b3e5fc;">~ ${est.office} FPS (UI fluida)</div>
+                    <div style="opacity:0.9;font-size:0.85rem;margin-top:0.4rem;">Apps: navegador, correo, ofimática</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>Render</strong>
+                    <div style="font-size:1.2rem;margin-top:0.4rem;color:#ce93d8;">~ ${est.render} min/frame</div>
+                    <div style="opacity:0.9;font-size:0.85rem;margin-top:0.4rem;">Estimación aproximada (CPU-bound)</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>Edición foto/video</strong>
+                    <div style="font-size:1.2rem;margin-top:0.4rem;color:#ffd54f;">Foto: ~ ${est.foto} ops / Video: ~ ${est.video} ops</div>
+                    <div style="opacity:0.9;font-size:0.85rem;margin-top:0.4rem;">Indicador de rendimiento relativo</div>
+                  </div>
+                </div>
+                </div>
+                <div style="margin-top:0.8rem;font-size:0.9rem;opacity:0.95;display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;">
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>Consumo (Watts)</strong>
+                    <div style="margin-top:0.4rem;">Casual: ~ ${est.power.powerCasual} W</div>
+                    <div>Exigente: ~ ${est.power.powerExigente} W</div>
+                    <div>AAA: ~ ${est.power.powerAAA} W</div>
+                    <div>Oficina: ~ ${est.power.powerOffice} W</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.03);padding:0.6rem;border-radius:6px;">
+                    <strong>kWh / mes y costo (CLP)</strong>
+                    <div style="margin-top:0.4rem;">Casual: ~ ${est.kwh.kwhCasual.toFixed(2)} kWh · ${est.cost.costCasual} CLP / mes</div>
+                    <div>Exigente: ~ ${est.kwh.kwhExigente.toFixed(2)} kWh · ${est.cost.costExigente} CLP / mes</div>
+                    <div>AAA: ~ ${est.kwh.kwhAAA.toFixed(2)} kWh · ${est.cost.costAAA} CLP / mes</div>
+                    <div>Oficina: ~ ${est.kwh.kwhOffice.toFixed(2)} kWh · ${est.cost.costOffice} CLP / mes</div>
+                    <div style="margin-top:0.5rem;font-size:0.82rem;opacity:0.85;">Tarifa usada: ${est.tarifaCLP} CLP/kWh · Estimaciones orientativas</div>
+                  </div>
+                </div>
+                <div style="margin-top:0.6rem;font-size:0.85rem;opacity:0.9;">GPU detectada: ${est.gpu} · CPU detectado: ${est.cpu}</div>
+              `;
+            }
+
+            function openModal(){
+              const sel = safeGetSelection();
+              const est = sel ? estimateFPS(sel) : null;
+              content.innerHTML = renderBenchmark(est);
+              modal.style.display = 'flex';
+              modal.setAttribute('aria-hidden','false');
+            }
+
+            function closeModal(){
+              modal.style.display = 'none';
+              modal.setAttribute('aria-hidden','true');
+            }
+
+            if(openBtn){ openBtn.addEventListener('click', openModal); }
+            if(closeBtn){ closeBtn.addEventListener('click', closeModal); }
+            if(closeBottom){ closeBottom.addEventListener('click', closeModal); }
+            // cerrar con escape
+            document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+            // click fuera del dialogo
+            modal.addEventListener('click', (ev)=>{ if(ev.target === modal) closeModal(); });
+
           })();
         </script>
 
