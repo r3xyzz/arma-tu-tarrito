@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Quiero probar - Arma Tu Tarrito</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   </head>
   <body>
@@ -37,11 +37,8 @@
           </div>
         </nav>
 
-        <!-- Video fondo -->
-        <video id="video-fondo" autoplay muted loop playsinline>
-          <source src="video/video-fondo2.mp4" type="video/mp4">
-          Tu navegador no soporta video HTML5.
-        </video>
+        <!-- Imagen de fondo -->
+        <img class="fondo-imagen" src="../fondo/topografico blanco negro agua.jpg" alt="" aria-hidden="true">
 
         <div class="overlay"></div>
 
@@ -52,7 +49,7 @@
           <section class="model-section" aria-label="Vista 3D del producto" style="display:none;opacity:0;transition:opacity 400ms ease;" aria-hidden="true">
             <div id="model-loading" style="color:#fff;text-align:center;padding:1rem;display:none;">Cargando modelo 3D...</div>
             <!-- Contenedor vacío: el model-viewer se creará dinámicamente al guardar -->
-            <div id="model-container" data-src="set-up/scene.gltf" style="width:100%;height:520px;"></div>
+            <div id="model-container" data-src="../set-up/scene.gltf" style="width:100%;height:520px;"></div>
           </section>
 
           <!-- Componentes: 8 recuadros expandibles con + -->
@@ -210,7 +207,7 @@
           <div id="contact-msg" class="contact-msg" aria-live="polite"></div>
         </div>
 
-        <script src="javascript.js"></script>
+        <script src="../javascript.js"></script>
 
         <script>
           (function(){
