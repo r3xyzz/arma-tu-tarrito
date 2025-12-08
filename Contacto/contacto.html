@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Página con video de fondo</title>
+		<link rel="stylesheet" href="contacto.css">
+		<!-- model-viewer for embedding 3D models -->
+		<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+	</head>
+	<body>
+		<!-- Barra de tareas superior -->
+		<nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+			<div class="topbar-inner">
+				<div class="brand">Arma Tu Tarrito Oficial</div>
+				<button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+				<ul class="menu">
+					<li class="has-dropdown">
+						<button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+						<ul class="dropdown" aria-label="submenu productos">
+							<li><a href="cpu.html">CPU</a></li>
+							<li><a href="grafica.html">Gráfica</a></li>
+							<li><a href="ram.html">RAM</a></li>
+							<li><a href="gabinete.html">Gabinete</a></li>
+							<li><a href="refrigeracion.html">Refrigeracion</a></li>
+							<li><a href="almacenamiento.html">Almacenamiento</a></li>
+							<li><a href="fuentepc.html">Fuente de poder</a></li>
+							<li><a href="motherboard.html">Tarjeta madre</a></li>
+						</ul>
+					</li>
+					<li><a href="comunidad.html">Comunidad</a></li>
+					<li><a href="quiero-probar.html">Quiero probar</a></li>
+					<li><a href="info.html">Quienes somos ?</a></li>
+					<li><a href="carrito.html">Carrito</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- Imagen fondo -->
+		<img id="fondo-imagen" src="/fondo/dedos codigo.jpg" alt="Fondo - Dedos código" class="fondo-imagen">
+
+		<!-- Capa overlay para mejorar legibilidad -->
+		<div class="overlay"></div>
+
+		<!-- Contenido principal -->
+		<main class="content">
+			<!-- Recuadro semi transparente de contacto -->
+			<div class="contact-box">
+				<h2>Contáctanos</h2>
+				<div class="contact-box-content">
+					<div class="contact-item">
+						<h3>Email</h3>
+						<p>armatutarrito@gmail.com</p>
+					</div>
+					<div class="contact-item">
+						<h3>Síguenos</h3>
+						<a href="https://www.instagram.com/armatutarrito/" target="_blank" rel="noopener noreferrer" class="social-link">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+								<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+							</svg>
+							@armatutarrito
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</main>
+
+		<!-- Barra de contacto inferior -->
+		<div class="contact-bar" id="contact-bar" role="region" aria-label="Recibir actualizaciones">
+			<form id="contact-form" class="contact-form">
+				<label for="contact-email" class="contact-label">Recibir más info</label>
+				<input id="contact-email" name="email" type="email" placeholder="tu-correo@gmail.com" class="contact-input" required />
+				<button type="submit" class="btn contact-submit">Enviar</button>
+				<button type="button" class="contact-close" id="contact-close" aria-label="Cerrar">✕</button>
+			</form>
+			<div id="contact-msg" class="contact-msg" aria-live="polite"></div>
+		</div>
+		<script src="contacto.js"></script>
+	</body>
+</html>

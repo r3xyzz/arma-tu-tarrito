@@ -20,6 +20,20 @@ html,body{
 	transition: opacity .6s ease;
 }
 
+.fondo-imagen{
+	position:fixed;
+	right:0;
+	bottom:0;
+	min-width:100%;
+	min-height:100%;
+	width:auto;
+	height:auto;
+	z-index:-2;
+	object-fit:cover;
+	opacity:1;
+	transition: opacity .6s ease;
+}
+
 .overlay{
 	position:fixed;
 	inset:0;
