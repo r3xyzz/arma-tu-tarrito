@@ -65,6 +65,33 @@ html,body{
 	border:1px solid rgba(255,255,255,0.2);
 }
 
+.btn-purchase{
+	display:inline-block;
+	padding:0.8rem 2rem;
+	background:linear-gradient(135deg, #00d4ff, #0099ff);
+	color:#fff;
+	font-weight:600;
+	font-size:1rem;
+	text-decoration:none;
+	border-radius:8px;
+	border:none;
+	cursor:pointer;
+	transition:all 0.3s ease;
+	box-shadow:0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.btn-purchase:hover{
+	transform:translateY(-2px);
+	box-shadow:0 6px 20px rgba(0, 212, 255, 0.6);
+	background:linear-gradient(135deg, #00e6ff, #0aadff);
+}
+
+.btn-purchase:disabled{
+	background:linear-gradient(135deg, #666, #555);
+	box-shadow:0 4px 15px rgba(100, 100, 100, 0.4);
+	cursor:not-allowed;
+}
+
 /* Topbar (barra de tareas) */
 .topbar{
 	position:fixed;
