@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Servicio de Armado - Arma Tu Tarrito</title>
+    <link rel="stylesheet" href="carrito2.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </head>
+  <body>
+    <!-- Barra de tareas superior (misma que en index) -->
+    <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+      <div class="topbar-inner">
+        <div class="brand">Arma Tu Tarrito Oficial</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <ul class="menu">
+          <li class="has-dropdown">
+            <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+              <ul class="dropdown" aria-label="submenu productos">
+                <li><a href="cpu.html">CPU</a></li>
+                <li><a href="grafica.html">Gráfica</a></li>
+                <li><a href="ram.html">RAM</a></li>
+                <li><a href="gabinete.html">Gabinete</a></li>
+                <li><a href="refrigeracion.html">Refrigeracion</a></li>
+                <li><a href="almacenamiento.html">Almacenamiento</a></li>
+                <li><a href="fuentepc.html">Fuente de poder</a></li>
+                <li><a href="motherboard.html">Tarjeta madre</a></li>
+              </ul>
+          </li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+          <li><a href="quiero-probar.html">Quiero probar</a></li>
+          <li><a href="#">Regístrate</a></li>
+          <li><a href="info.html">Quienes somos ?</a></li>
+          <li><a href="#">Contacto: armatutarrito@gmail.com</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Imagen fondo -->
+    <img id="fondo-imagen" src="../fondo/dedos pixeles.jpg" alt="Fondo - Dedos Pixeles" class="fondo-imagen">
+
+    <div class="overlay"></div>
+
+    <!-- Contenido principal del carrito -->
+    <main class="content">
+      <h1>Servicio de Armado Profesional</h1>
+      <p class="muted">Has contratado nuestro servicio de armado profesional. Revisa los detalles de tu pedido y los componentes que armaremos para ti.</p>
+
+      <section class="cart-list" style="max-width:1100px;margin:1.2rem auto;">
+        <!-- Artículo de servicio de armado -->
+        <article class="cart-item" style="display:flex;gap:1rem;align-items:center;padding:1.2rem;background:rgba(0,212,255,0.15);border:2px solid rgba(0,212,255,0.4);border-radius:10px;margin-bottom:1rem;">
+          <div style="font-size:3rem;color:#00d4ff;">🛠️</div>
+          <div style="flex:1;">
+            <h4 style="margin:0 0 0.3rem 0;color:#00d4ff;font-size:1.2rem;">Servicio de Armado Profesional</h4>
+            <p style="margin:0;opacity:0.95;color:#fff;">Incluye: Instalación completa, cable management, pruebas de estabilidad, instalación de OS y drivers</p>
+            <p style="margin:0.3rem 0 0 0;font-size:0.9rem;opacity:0.8;color:#9fe;">✓ Garantía de 6 meses | ✓ Soporte técnico 30 días | ✓ Seguimiento en tiempo real</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="color:#00d4ff;font-weight:700;font-size:1.3rem;">$50.00</div>
+            <p style="margin:0.2rem 0 0 0;font-size:0.85rem;color:#9fe;">Comisión única</p>
+          </div>
+        </article>
+
+        <h3 style="color:#fff;margin:1.5rem 0 0.8rem 0;">Componentes a ensamblar:</h3>
+
+        <article class="cart-item" style="display:flex;gap:1rem;align-items:center;padding:0.9rem;background:rgba(0,0,0,0.45);border-radius:10px;margin-bottom:0.8rem;">
+          <img src="../photo/grafica.png" alt="GPU" style="width:84px;height:64px;object-fit:cover;border-radius:6px;">
+          <div style="flex:1;">
+            <h4 style="margin:0 0 0.2rem 0;color:#fff;">NVIDIA RTX 3060</h4>
+            <p style="margin:0;opacity:0.9;color:#ddd;">Tarjeta de video — 12GB GDDR6</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="color:#9fe;font-weight:600;">$329</div>
+          </div>
+        </article>
+
+        <article class="cart-item" style="display:flex;gap:1rem;align-items:center;padding:0.9rem;background:rgba(0,0,0,0.45);border-radius:10px;margin-bottom:0.8rem;">
+          <img src="../photo/proce.jpg" alt="CPU" style="width:84px;height:64px;object-fit:cover;border-radius:6px;">
+          <div style="flex:1;">
+            <h4 style="margin:0 0 0.2rem 0;color:#fff;">AMD Ryzen 5 5600X</h4>
+            <p style="margin:0;opacity:0.9;color:#ddd;">Procesador — 6 cores / 12 hilos</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="color:#9fe;font-weight:600;">$199</div>
+          </div>
+        </article>
+
+        <!-- Resumen de costos -->
+        <div style="background:rgba(0,0,0,0.6);padding:1.2rem;border-radius:10px;margin-top:1.5rem;border:1px solid rgba(255,255,255,0.1);">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;color:#fff;">
+            <span>Subtotal componentes:</span>
+            <span style="font-weight:600;">$528.00</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;color:#00d4ff;">
+            <span>Servicio de armado:</span>
+            <span style="font-weight:600;">$50.00</span>
+          </div>
+          <div style="height:1px;background:rgba(255,255,255,0.2);margin:0.8rem 0;"></div>
+          <div style="display:flex;justify-content:space-between;color:#fff;font-size:1.2rem;">
+            <span style="font-weight:700;">Total:</span>
+            <span style="font-weight:700;color:#00d4ff;">$578.00</span>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:1.5rem;">
+          <button id="purchase-btn" class="btn-purchase">Confirmar Pedido y Pagar</button>
+          <div id="purchase-msg" style="margin-top:1rem;font-size:1.1rem;color:#9fe;font-weight:600;display:none;"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Barra de contacto inferior (misma que en index) -->
+    <div class="contact-bar" id="contact-bar" role="region" aria-label="Recibir actualizaciones">
+      <form id="contact-form" class="contact-form">
+        <label for="contact-email" class="contact-label">Recibir más info</label>
+        <input id="contact-email" name="email" type="email" placeholder="tu-correo@gmail.com" class="contact-input" required />
+        <button type="submit" class="btn contact-submit">Enviar</button>
+        <button type="button" class="contact-close" id="contact-close" aria-label="Cerrar">✕</button>
+      </form>
+      <div id="contact-msg" class="contact-msg" aria-live="polite"></div>
+    </div>
+
+    <script src="carrito2.js"></script>
+  </body>
+</html>
