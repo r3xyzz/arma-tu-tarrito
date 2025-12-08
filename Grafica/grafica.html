@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Tarjetas gráficas - Arma Tu Tarrito</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
     <style>
       .cards {max-width:1100px;margin:3rem auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:0 1rem}
-      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem}
+      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem;transition:transform 0.3s;}
+      .card:hover{transform:translateY(-5px);}
       .card h3{margin:0;font-size:1.05rem}
       .card p{margin:0;color:#ccc;font-size:0.9rem}
-      .preview {height:220px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-      .small-mv{width:100%;height:100%;}
+      .preview {height:220px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;}
+      .preview img{width:100%;height:100%;object-fit:contain;padding:0.5rem;}
       @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)} }
       @media(max-width:600px){.cards{grid-template-columns:1fr}}
     </style>
@@ -26,114 +26,93 @@
           <li class="has-dropdown">
             <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
             <ul class="dropdown" aria-label="submenu productos">
-              <li><a href="cpu.html">CPU</a></li>
-              <li><a href="grafica.html">Gráfica</a></li>
-              <li><a href="ram.html">RAM</a></li>
-              <li><a href="gabinete.html">Gabinete</a></li>
-              <li><a href="refrigeracion.html">Refrigeracion</a></li>
-              <li><a href="almacenamiento.html">Almacenamiento</a></li>
-              <li><a href="fuentepc.html">Fuente de poder</a></li>
-              <li><a href="motherboard.html">Tarjeta madre</a></li>
+              <li><a href="../procesador/cpu.html">CPU</a></li>
+              <li><a href="../Grafica/grafica.html">Gráfica</a></li>
+              <li><a href="../ram/ram.html">RAM</a></li>
+              <li><a href="../gabinetes/gabinete.html">Gabinete</a></li>
+              <li><a href="../refrigeracion/refrigeracion.html">Refrigeracion</a></li>
+              <li><a href="../almacenamiento/almacenamiento.html">Almacenamiento</a></li>
+              <li><a href="../fuente poder/fuentepc.html">Fuente de poder</a></li>
+              <li><a href="../placa madre/motherboard.html">Tarjeta madre</a></li>
             </ul>
           </li>
-          <li><a href="index.html">Armador de tarrito</a></li>
-          <li><a href="comunidad.html">Comunidad</a></li>
-          <li><a href="quiero-probar.html">Quiero probar</a></li>
-          <li><a href="info.html">Quienes somos ?</a></li>
-          <li><a href="carrito.html">Carrito</a></li>
+          <li><a href="../index.html">Armador de tarrito</a></li>
+          <li><a href="../comunidad/comunidad.html">Comunidad</a></li>
+          <li><a href="../quiero probar/quiero-probar.html">Quiero probar</a></li>
+          <li><a href="../informacion/info.html">Quienes somos ?</a></li>
+          <li><a href="../carrito/carrito.html">Carrito</a></li>
           <li><a>Contacto: armatutarrito@gmail.com</a></li>
         </ul>
       </div>
     </nav>
 
-    <div style="position:fixed;inset:0;z-index:-2;background:url('video/fondo3.png') center/cover no-repeat fixed"></div>
+    <img class="fondo-imagen" src="../fondo/topografico mezcla.jpg" alt="" aria-hidden="true">
     <div class="overlay"></div>
 
     <main class="content" style="padding-top:3.6rem;">
       <h2 style="color:#fff;text-align:center;margin-top:0">Tarjetas gráficas</h2>
-      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Haz click en una tarjeta para cargar una vista 3D compacta de la gráfica.</p>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Selecciona la tarjeta gráfica que mejor se adapte a tus necesidades.</p>
 
       <section class="cards" aria-label="Opciones de gráfica">
-        <article class="card" data-model="grafica-amd-rx480/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>AMD RX 480</h3>
-          <p>Ejemplo RX 480</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <p>8GB GDDR5 - Ideal para gaming 1080p</p>
+          <div class="preview">
+            <img src="../foto-componentes/rx480.jpg" alt="AMD RX 480" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="grafica-amd-rx580/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>AMD RX 580</h3>
-          <p>Ejemplo RX 580</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <p>8GB GDDR5 - Excelente para gaming 1080p</p>
+          <div class="preview">
+            <img src="../foto-componentes/rx580.jpg" alt="AMD RX 580" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="grafica-amd-rx6700xt/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>AMD RX 6700 XT</h3>
-          <p>Ejemplo RX 6700 XT</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <p>12GB GDDR6 - Gaming 1440p de alta gama</p>
+          <div class="preview">
+            <img src="../foto-componentes/rx6700.jpg" alt="AMD RX 6700 XT" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="grafica-nvidia-3060/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>NVIDIA RTX 3060</h3>
-          <p>Ejemplo RTX 3060</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <p>12GB GDDR6 - Gaming 1080p/1440p</p>
+          <div class="preview">
+            <img src="../foto-componentes/3060.png" alt="NVIDIA RTX 3060" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="grafica-nvidia-3080/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>NVIDIA RTX 3080</h3>
-          <p>Ejemplo RTX 3080</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <p>10GB GDDR6X - Gaming 4K y Ray Tracing</p>
+          <div class="preview">
+            <img src="../foto-componentes/3080.jpg" alt="NVIDIA RTX 3080" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="grafica-nvidia-3090/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>NVIDIA RTX 3090</h3>
-          <p>Ejemplo RTX 3090</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <p>24GB GDDR6X - Workstation y gaming extremo</p>
+          <div class="preview">
+            <img src="../foto-componentes/3090.avif" alt="NVIDIA RTX 3090" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="grafica-nvidia-4080/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>NVIDIA RTX 4080</h3>
-          <p>Ejemplo RTX 4080</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <p>16GB GDDR6X - Gaming 4K de última generación</p>
+          <div class="preview">
+            <img src="../foto-componentes/4080.png" alt="NVIDIA RTX 4080" loading="lazy">
+          </div>
         </article>
       </section>
 
     </main>
 
-    <script src="javascript.js"></script>
-    <script>
-      (function(){
-        function createSmallViewer(modelPath){
-          const mv = document.createElement('model-viewer');
-          mv.setAttribute('src', modelPath);
-          mv.setAttribute('camera-controls','');
-          mv.setAttribute('auto-rotate','');
-          mv.setAttribute('exposure','1');
-          mv.setAttribute('shadow-intensity','0.8');
-          mv.style.width = '100%'; mv.style.height = '100%';
-          return mv;
-        }
-
-        document.querySelectorAll('.card').forEach(card=>{
-          const preview = card.querySelector('.preview');
-          const modelPath = card.dataset.model;
-          let loaded = false;
-          function loadModel(){
-            if(loaded) return;
-            preview.innerHTML = '';
-            const mv = createSmallViewer(modelPath);
-            const loader = document.createElement('div');
-            loader.style.cssText = 'position:absolute;color:#fff;pointer-events:none;';
-            preview.appendChild(loader);
-            mv.addEventListener('load', ()=>{ loader.remove(); });
-            mv.addEventListener('error', (e)=>{ loader.textContent = 'Error al cargar vista 3D'; console.error(e); });
-            preview.appendChild(mv);
-            loaded = true;
-            card.setAttribute('aria-pressed','true');
-          }
-          card.addEventListener('click', ()=> loadModel());
-          card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadModel(); } });
-        });
-      })();
-    </script>
+    <script src="../javascript.js"></script>
   </body>
 </html>

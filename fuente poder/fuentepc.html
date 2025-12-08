@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Fuente de poder - Arma Tu Tarrito</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
     <style>
       .cards {max-width:1000px;margin:3rem auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;padding:0 1rem}
-      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem}
+      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem;transition:transform 0.3s;}
+      .card:hover{transform:translateY(-5px);}
       .card h3{margin:0;font-size:1.05rem}
       .card p{margin:0;color:#ccc;font-size:0.9rem}
-      .preview {height:200px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-      .small-mv{width:100%;height:100%;}
+      .preview {height:200px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;}
+      .preview img{width:100%;height:100%;object-fit:contain;padding:0.5rem;}
       @media(max-width:700px){.cards{grid-template-columns:1fr}}
     </style>
   </head>
@@ -45,64 +45,33 @@
       </div>
     </nav>
 
-    <div style="position:fixed;inset:0;z-index:-2;background:url('video/fondo3.png') center/cover no-repeat fixed"></div>
+    <img class="fondo-imagen" src="../fondo/topografico mezcla.jpg" alt="" aria-hidden="true">
     <div class="overlay"></div>
 
     <main class="content" style="padding-top:3.6rem;">
       <h2 style="color:#fff;text-align:center;margin-top:0">Fuente de poder</h2>
-      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Haz click en una tarjeta para cargar una vista 3D compacta de la fuente de poder.</p>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Selecciona la fuente de poder que mejor se adapte a tus necesidades.</p>
 
       <section class="cards" aria-label="Opciones de fuente">
-        <article class="card" data-model="fuente-poder/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>Fuente — Modelo 1</h3>
           <p>Fuente de poder ejemplo 1</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <div class="preview">
+            <img src="../foto-componentes/fuente de poder.png" alt="Fuente Modelo 1" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="fuente-poder2/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>Fuente — Modelo 2</h3>
           <p>Fuente de poder ejemplo 2</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <div class="preview">
+            <img src="../foto-componentes/fuente de poder 2.png" alt="Fuente Modelo 2" loading="lazy">
+          </div>
         </article>
       </section>
 
     </main>
 
-    <script src="javascript.js"></script>
-    <script>
-      (function(){
-        function createSmallViewer(modelPath){
-          const mv = document.createElement('model-viewer');
-          mv.setAttribute('src', modelPath);
-          mv.setAttribute('camera-controls','');
-          mv.setAttribute('auto-rotate','');
-          mv.setAttribute('exposure','1');
-          mv.setAttribute('shadow-intensity','0.8');
-          mv.style.width = '100%'; mv.style.height = '100%';
-          return mv;
-        }
-
-        document.querySelectorAll('.card').forEach(card=>{
-          const preview = card.querySelector('.preview');
-          const modelPath = card.dataset.model;
-          let loaded = false;
-          function loadModel(){
-            if(loaded) return;
-            preview.innerHTML = '';
-            const mv = createSmallViewer(modelPath);
-            const loader = document.createElement('div');
-            loader.style.cssText = 'position:absolute;color:#fff;pointer-events:none;';
-            preview.appendChild(loader);
-            mv.addEventListener('load', ()=>{ loader.remove(); });
-            mv.addEventListener('error', (e)=>{ loader.textContent = 'Error al cargar vista 3D'; console.error(e); });
-            preview.appendChild(mv);
-            loaded = true;
-            card.setAttribute('aria-pressed','true');
-          }
-          card.addEventListener('click', ()=> loadModel());
-          card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadModel(); } });
-        });
-      })();
-    </script>
+    <script src="../javascript.js"></script>
   </body>
 </html>

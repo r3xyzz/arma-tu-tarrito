@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Memoria RAM - Arma Tu Tarrito</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
     <style>
       .cards {max-width:1000px;margin:3rem auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:0 1rem}
-      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem}
+      .card {background:rgba(255,255,255,0.03);border-radius:10px;padding:1rem;color:#fff;display:flex;flex-direction:column;align-items:stretch;gap:0.5rem;transition:transform 0.3s;}
+      .card:hover{transform:translateY(-5px);}
       .card h3{margin:0;font-size:1.05rem}
       .card p{margin:0;color:#ccc;font-size:0.9rem}
-      .preview {height:180px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-      .small-mv{width:100%;height:100%;}
+      .preview {height:180px;background:rgba(0,0,0,0.18);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;}
+      .preview img{width:100%;height:100%;object-fit:contain;padding:0.5rem;}
       @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)} }
       @media(max-width:600px){.cards{grid-template-columns:1fr}}
     </style>
@@ -46,70 +46,41 @@
       </div>
     </nav>
 
-    <div style="position:fixed;inset:0;z-index:-2;background:url('video/fondo3.png') center/cover no-repeat fixed"></div>
+    <img class="fondo-imagen" src="../fondo/topografico mezcla.jpg" alt="" aria-hidden="true">
     <div class="overlay"></div>
 
     <main class="content" style="padding-top:3.6rem;">
       <h2 style="color:#fff;text-align:center;margin-top:0">Memoria RAM</h2>
-      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Haz click en una tarjeta para cargar una vista 3D compacta del módulo de memoria.</p>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Selecciona el módulo de memoria que mejor se adapte a tus necesidades.</p>
 
       <section class="cards" aria-label="Opciones de RAM">
-        <article class="card" data-model="ram-ddr3-4gb/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>DDR3 — 4GB</h3>
           <p>Módulo DDR3 4GB</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <div class="preview">
+            <img src="../foto-componentes/ram ddr3.jpg" alt="DDR3 4GB" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="ram-ddr4-8gb/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>DDR4 — 8GB</h3>
           <p>Módulo DDR4 8GB</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <div class="preview">
+            <img src="../foto-componentes/ram ddr4.jpg" alt="DDR4 8GB" loading="lazy">
+          </div>
         </article>
 
-        <article class="card" data-model="ram-ddr4-16gb/scene.gltf" tabindex="0" role="button">
+        <article class="card">
           <h3>DDR4 — 16GB</h3>
           <p>Módulo DDR4 16GB</p>
-          <div class="preview"><div style="color:#fff;opacity:0.9">Haz click para cargar 3D</div></div>
+          <div class="preview">
+            <img src="../foto-componentes/ram ddr4 16gb.jpg" alt="DDR4 16GB" loading="lazy">
+          </div>
         </article>
       </section>
 
     </main>
 
-    <script src="javascript.js"></script>
-    <script>
-      (function(){
-        function createSmallViewer(modelPath){
-          const mv = document.createElement('model-viewer');
-          mv.setAttribute('src', modelPath);
-          mv.setAttribute('camera-controls','');
-          mv.setAttribute('auto-rotate','');
-          mv.setAttribute('exposure','1');
-          mv.setAttribute('shadow-intensity','0.8');
-          mv.style.width = '100%'; mv.style.height = '100%';
-          return mv;
-        }
-
-        document.querySelectorAll('.card').forEach(card=>{
-          const preview = card.querySelector('.preview');
-          const modelPath = card.dataset.model;
-          let loaded = false;
-          function loadModel(){
-            if(loaded) return;
-            preview.innerHTML = '';
-            const mv = createSmallViewer(modelPath);
-            const loader = document.createElement('div');
-            loader.style.cssText = 'position:absolute;color:#fff;pointer-events:none;';
-            preview.appendChild(loader);
-            mv.addEventListener('load', ()=>{ loader.remove(); });
-            mv.addEventListener('error', (e)=>{ loader.textContent = 'Error al cargar vista 3D'; console.error(e); });
-            preview.appendChild(mv);
-            loaded = true;
-            card.setAttribute('aria-pressed','true');
-          }
-          card.addEventListener('click', ()=> loadModel());
-          card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadModel(); } });
-        });
-      })();
-    </script>
+    <script src="../javascript.js"></script>
   </body>
 </html>
