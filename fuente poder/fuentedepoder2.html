@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Fuente de Poder 850W - Arma Tu Tarrito</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+      .product-container { max-width: 1400px; margin: 3rem auto; padding: 2rem; display: flex; gap: 4rem; align-items: flex-start; justify-content: space-between; }
+      .price-section { flex: 0 0 400px; display:flex; flex-direction:column; gap:1rem; margin-left:3rem; }
+      .price-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.5rem; color:#fff; }
+      .price-card h3 { margin:0 0 .5rem 0; font-size:1.3rem; color:#00d4ff; }
+      .price-card .price { font-size:2rem; font-weight:700; }
+      .model-section { flex:0 0 500px; display:flex; flex-direction:column; align-items:center; padding:2rem; margin-right:3rem; gap:1rem; }
+      .model-container { width:100%; height:500px; background: rgba(0,0,0,0.18); border-radius:12px; display:flex; align-items:center; justify-content:center; position:relative; }
+      .model-placeholder { color:#fff; font-size:1.1rem; text-align:center; }
+      .model-section model-viewer{ display:none !important; width:auto !important; height:auto !important; max-width:100%; max-height:100%; aspect-ratio:1 / 1; }
+      .model-section model-viewer.loaded{ display:block !important; width:auto !important; height:auto !important; max-width:100%; max-height:100%; aspect-ratio:1 / 1; margin:0 auto; }
+      .model-container img{ display:block; width:auto !important; height:100% !important; max-height:100%; object-fit:contain; aspect-ratio:1 / 1; margin:0 auto; }
+      .btn-model { padding:.8rem 2rem; background: linear-gradient(135deg,#00d4ff,#0099ff); border:none; border-radius:8px; color:#fff; font-weight:600; cursor:pointer; }
+      .btn-hide { background: linear-gradient(135deg,#ff4d4d,#cc0000); }
+      .description-section { max-width:1400px; margin:2rem auto; padding:0 2rem; }
+      .description-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius:12px; padding:2rem; color:#fff; }
+      @media(max-width:900px){ .product-container{ flex-direction:column; } .model-container{ height:400px; } }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+      <div class="topbar-inner">
+        <div class="brand">Arma Tu Tarrito Oficial</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <ul class="menu">
+          <li class="has-dropdown">
+            <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+            <ul class="dropdown" aria-label="submenu productos">
+              <li><a href="../procesador/cpu.html">CPU</a></li>
+              <li><a href="../Grafica/grafica.html">Gráfica</a></li>
+              <li><a href="../ram/ram.html">RAM</a></li>
+              <li><a href="../gabinetes/gabinete.html">Gabinete</a></li>
+              <li><a href="../refrigeracion/refrigeracion.html">Refrigeracion</a></li>
+              <li><a href="../almacenamiento/almacenamiento.html">Almacenamiento</a></li>
+              <li><a href="../fuente poder/fuentepc.html">Fuente de poder</a></li>
+              <li><a href="../placa madre/motherboard.html">Tarjeta madre</a></li>
+            </ul>
+          </li>
+          <li><a href="../index.html">Armador de tarrito</a></li>
+          <li><a href="../comunidad/comunidad.html">Comunidad</a></li>
+          <li><a href="../quiero probar/quiero-probar.html">Quiero probar</a></li>
+          <li><a href="../informacion/info.html">Quienes somos ?</a></li>
+          <li><a href="../carrito/carrito.html">Carrito</a></li>
+          <li><a>Contacto: armatutarrito@gmail.com</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <img class="fondo-imagen" src="../fondo/topografico mezcla.jpg" alt="" aria-hidden="true">
+    <div class="overlay"></div>
+
+    <main class="content" style="padding-top:3.6rem;">
+      <h2 style="color:#fff;text-align:center;margin-top:0">Fuente de Poder 850W</h2>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">Fuente de alimentación modular 80 Plus Gold certificada para sistemas de alta gama</p>
+
+      <div class="product-container">
+        <div class="price-section">
+          <div class="price-card">
+            <h3>Sipo</h3>
+            <div class="price">$120 USD</div>
+          </div>
+
+          <div class="price-card">
+            <h3>Falabella</h3>
+            <div class="price">$140 USD</div>
+          </div>
+
+          <div class="price-card">
+            <h3>SpDigital</h3>
+            <div class="price">$160 USD</div>
+          </div>
+        </div>
+
+        <div class="model-wrapper">
+          <div class="model-container" data-model="../FUENTE-DE-PODER3d/fuente-poder2/scene.gltf" data-image="../foto-componentes/fuente de poder 2.png" data-alt="Fuente de Poder 850W" data-scale="1.4">
+            <div class="model-placeholder">Haz clic en "Cargar Modelo 3D" para ver la fuente de poder</div>
+          </div>
+          <div>
+            <button class="btn-model btn-load">Cargar Modelo 3D / Imagen</button>
+            <button class="btn-model btn-hide" style="display:none;">Ocultar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="description-section">
+        <div class="description-card">
+          <h3>Descripción del producto</h3>
+          <p>
+            Fuente de poder modular de 850W con certificación 80 Plus Gold, diseñada para sistemas de alta gama con múltiples GPUs y overclocking.
+          </p>
+          <p style="margin-top: 1rem;">
+            Cables modulares para mejor manejo de cables, ventilador silencioso con control térmico y protecciones completas para máxima confiabilidad.
+          </p>
+        </div>
+      </div>
+
+    </main>
+
+    <script src="../javascript.js"></script>
+    <script>
+      // The global `javascript.js` will attach the dynamic loader to `.model-wrapper` elements.
+    </script>
+  </body>
+</html>

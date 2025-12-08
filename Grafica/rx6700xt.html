@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AMD RX 6700 XT - Arma Tu Tarrito</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- model-viewer will be loaded dynamically when the user requests the 3D model -->
+    <style>
+      .product-container {
+        max-width: 1400px;
+        margin: 3rem auto;
+        padding: 2rem;
+        display: flex;
+        gap: 4rem;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .price-section {
+        flex: 0 0 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-left: 3rem;
+      }
+      .price-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 1.5rem;
+        color: #fff;
+        transition: transform 0.3s, background 0.3s;
+      }
+      .price-card:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .price-card h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.3rem;
+        color: #00d4ff;
+      }
+      .price-card .price {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0.5rem 0;
+      }
+      .price-card .description {
+        color: #ccc;
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+      }
+      .model-section {
+        flex: 0 0 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2rem;
+        margin-right: 3rem;
+        gap: 1rem;
+      }
+      .model-container {
+        width: 100%;
+        height: 500px;
+        background: rgba(0, 0, 0, 0.18);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .model-placeholder {
+        color: #fff;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+      /* Ensure only the intended model-viewer instance is visible.
+         Use .model-section scope and !important to override global rules.
+         Force a square viewing area so models don't appear vertically stretched. */
+      .model-section model-viewer{
+        display: none !important;
+        width: auto !important;
+        height: auto !important;
+        max-width: 100%;
+        max-height: 100%;
+        aspect-ratio: 1 / 1;
+      }
+      .model-section model-viewer.loaded{
+        display: block !important;
+        width: auto !important;
+        height: auto !important;
+        max-width: 100%;
+        max-height: 100%;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+      }
+      /* Ensure images appended as fallbacks also keep square aspect ratio */
+      .model-container img{
+        display: block;
+        width: auto !important;
+        height: 100% !important;
+        max-height: 100%;
+        object-fit: contain;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+      }
+      .btn-model {
+        padding: 0.8rem 2rem;
+        background: linear-gradient(135deg, #00d4ff, #0099ff);
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+      }
+      .btn-model:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6);
+      }
+      .btn-model:active {
+        transform: translateY(0);
+      }
+      .btn-hide {
+        background: linear-gradient(135deg, #ff4d4d, #cc0000);
+        box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+      }
+      .btn-hide:hover {
+        box-shadow: 0 6px 20px rgba(255, 77, 77, 0.6);
+      }
+      .description-section {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
+      .description-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 2rem;
+        color: #fff;
+      }
+      .description-card h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.5rem;
+        color: #00d4ff;
+      }
+      .description-card p {
+        color: #ddd;
+        line-height: 1.6;
+        margin: 0;
+      }
+      @media(max-width: 900px) {
+        .product-container {
+          flex-direction: column;
+        }
+        .model-container {
+          height: 400px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" role="navigation" aria-label="Barra de navegación principal">
+      <div class="topbar-inner">
+        <div class="brand">Arma Tu Tarrito Oficial</div>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <ul class="menu">
+          <li class="has-dropdown">
+            <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
+            <ul class="dropdown" aria-label="submenu productos">
+              <li><a href="../procesador/cpu.html">CPU</a></li>
+              <li><a href="../Grafica/grafica.html">Gráfica</a></li>
+              <li><a href="../ram/ram.html">RAM</a></li>
+              <li><a href="../gabinetes/gabinete.html">Gabinete</a></li>
+              <li><a href="../refrigeracion/refrigeracion.html">Refrigeracion</a></li>
+              <li><a href="../almacenamiento/almacenamiento.html">Almacenamiento</a></li>
+              <li><a href="../fuente poder/fuentepc.html">Fuente de poder</a></li>
+              <li><a href="../placa madre/motherboard.html">Tarjeta madre</a></li>
+            </ul>
+          </li>
+          <li><a href="../index.html">Armador de tarrito</a></li>
+          <li><a href="../comunidad/comunidad.html">Comunidad</a></li>
+          <li><a href="../quiero probar/quiero-probar.html">Quiero probar</a></li>
+          <li><a href="../informacion/info.html">Quienes somos ?</a></li>
+          <li><a href="../carrito/carrito.html">Carrito</a></li>
+          <li><a>Contacto: armatutarrito@gmail.com</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <img class="fondo-imagen" src="../fondo/topografico mezcla.jpg" alt="" aria-hidden="true">
+    <div class="overlay"></div>
+
+    <main class="content" style="padding-top:3.6rem;">
+      <h2 style="color:#fff;text-align:center;margin-top:0">AMD RX 6700 XT</h2>
+      <p style="color:#ddd;text-align:center;max-width:900px;margin:0.4rem auto 1.6rem;">8GB GDDR5 - Ideal para gaming 1080p</p>
+
+      <div class="product-container">
+        <div class="price-section">
+          <div class="price-card">
+            <h3>Sipo</h3>
+            <div class="price">$180 USD</div>
+          </div>
+
+          <div class="price-card">
+            <h3>Falabella</h3>
+            <div class="price">$220 USD</div>
+          </div>
+
+          <div class="price-card">
+            <h3>SpDigital</h3>
+            <div class="price">$260 USD</div>
+          </div>
+        </div>
+
+        <div class="model-wrapper">
+          <div class="model-container" data-model="../TARJETA-DE-VIDEO3d/grafica-amd-rx6700XT/scene.gltf" data-image="../foto-componentes/rx6700.jpg" data-alt="AMD RX 6700 XT">
+            <div class="model-placeholder">Haz clic en "Cargar Modelo 3D" para ver la tarjeta gráfica</div>
+          </div>
+          <div>
+            <button class="btn-model btn-load">Cargar Modelo 3D / Imagen</button>
+            <button class="btn-model btn-hide" style="display:none;">Ocultar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="description-section">
+        <div class="description-card">
+          <h3>Descripción del producto</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p style="margin-top: 1rem;">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+          </p>
+        </div>
+      </div>
+
+    </main>
+
+    <script src="../javascript.js"></script>
+  </body>
+</html>

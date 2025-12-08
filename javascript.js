@@ -173,3 +173,94 @@
     });
   }
 })();
+
+// --- Dynamic 3D model loader (integrated helper) ---
+(function(){
+  async function loadModelViewerScript(){
+    if(window.customElements && customElements.get('model-viewer')) return;
+    return new Promise((resolve,reject)=>{
+      const s = document.createElement('script');
+      s.type = 'module';
+      const url = 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js';
+      s.src = url;
+      s.onload = ()=> resolve();
+      s.onerror = (e)=> reject(e);
+      document.head.appendChild(s);
+    });
+  }
+
+  function attachLoader(container, btnLoad, btnHide){
+    if(!container || !btnLoad || !btnHide) return;
+    const modelPath = container.dataset.model || '';
+    const imagePath = container.dataset.image || '';
+    const placeholder = container.querySelector('.model-placeholder');
+    let loadedViewer = null;
+
+    btnLoad.addEventListener('click', async ()=>{
+      if(loadedViewer) return;
+      btnLoad.disabled = true;
+      try{
+        if(modelPath){
+          await loadModelViewerScript();
+          const mv = document.createElement('model-viewer');
+          mv.setAttribute('src', modelPath);
+          mv.setAttribute('camera-controls','');
+          mv.setAttribute('auto-rotate','');
+          mv.setAttribute('exposure','1');
+          mv.setAttribute('shadow-intensity','0.8');
+          if(container.dataset.alt) mv.setAttribute('alt', container.dataset.alt);
+          mv.style.width = '100%'; mv.style.height = '100%';
+          try{ mv.classList.add('loaded'); }catch(e){}
+          container.appendChild(mv);
+          loadedViewer = mv;
+          if(placeholder) placeholder.style.display = 'none';
+        } else if(imagePath){
+          const img = document.createElement('img');
+          img.src = imagePath;
+          img.alt = container.dataset.alt || '';
+          img.style.width = '100%'; img.style.height = '100%'; img.style.objectFit = 'contain';
+          container.appendChild(img);
+          loadedViewer = img;
+          if(placeholder) placeholder.style.display = 'none';
+        } else {
+          alert('No hay modelo 3D ni imagen configurada para este elemento.');
+        }
+        btnLoad.style.display = 'none';
+        btnHide.style.display = 'inline-block';
+      }catch(err){
+        console.error('Error cargando model-viewer:', err);
+        alert('Error al cargar el visor 3D. Revisa la consola.');
+        btnLoad.disabled = false;
+      }
+    });
+
+    btnHide.addEventListener('click', ()=>{
+      if(loadedViewer){
+        if(loadedViewer.tagName && loadedViewer.tagName.toLowerCase() === 'model-viewer'){
+          try{ loadedViewer.removeAttribute('src'); }catch(e){}
+        }
+        loadedViewer.remove();
+        loadedViewer = null;
+      }
+      if(placeholder) placeholder.style.display = 'block';
+      btnHide.style.display = 'none';
+      btnLoad.style.display = 'inline-block';
+      btnLoad.disabled = false;
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const wrappers = Array.from(document.querySelectorAll('.model-wrapper'));
+    wrappers.forEach(wrapper=>{
+      const container = wrapper.querySelector('.model-container');
+      const btnLoad = wrapper.querySelector('.btn-load');
+      const btnHide = wrapper.querySelector('.btn-hide');
+      // if buttons exist but are not visible, ensure initial state
+      if(btnHide) btnHide.style.display = btnHide.style.display || 'none';
+      if(btnLoad) btnLoad.style.display = btnLoad.style.display || 'inline-block';
+      attachLoader(container, btnLoad, btnHide);
+    });
+  });
+
+  window.loadModelViewerHelper = { attach: attachLoader, loadScript: loadModelViewerScript };
+})();
