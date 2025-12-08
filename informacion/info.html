@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<title>Quienes somos - Arma Tu Tarrito</title>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="informacion.css">
 		<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 	</head>
 	<body>
@@ -14,7 +14,6 @@
 				<div class="brand">Arma Tu Tarrito Oficial</div>
 				<button class="hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
 				<ul class="menu">
-					<li><a href="index.html">Armador de tarrito</a></li>
 					<li class="has-dropdown">
 						<button class="dropbtn" aria-haspopup="true" aria-expanded="false">Productos ▾</button>
 						
@@ -32,24 +31,20 @@
 					</li>
 					<li><a href="comunidad.html">Comunidad</a></li>
 					<li><a href="quiero-probar.html">Quiero probar</a></li>
-					<li><a href="#">Regístrate</a></li>
 					<li><a href="info.html">Quienes somos ?</a></li>
                     <li><a href="#">Contacto: armatutarrito@gmail.com</a></li>
 				</ul>
 			</div>
 		</nav>
 
-		<!-- Video fondo (misma fuente principal) -->
-		<video id="video-fondo" autoplay muted loop playsinline>
-			<source src="video/video-fondo2.mp4" type="video/mp4">
-			Tu navegador no soporta video HTML5.
-		</video>
+		<!-- Imagen fondo -->
+		<img id="fondo-imagen" src="../fondo/topografico degradado.jpg" alt="Fondo - Topográfico Degradado" class="fondo-imagen">
 
 		<div class="overlay"></div>
 
 		<!-- Contenido central con la información solicitada -->
 		<main class="content">
-			<section style="max-width:1000px;background:rgba(0,0,0,0.45);padding:2rem;border-radius:10px;color:#fff;text-align:left;">
+			<section style="max-width:1000px;background:rgba(0,0,0,0.45);padding:2rem;border-radius:10px;color:#fff;text-align:left;margin-top:4rem;">
 				<h2 style="text-align:center;margin-top:0;">¿Quiénes somos?</h2>
 				<p>Somos dos estudiantes apasionados por la tecnología que identificamos una problemática persistente en nuestro entorno. A pesar de que el gaming y el hardware de PC son más populares que nunca, el proceso de elegir y cotizar un equipo sigue siendo una barrera para los menos expertos. Por ello, "Arma Tu Tarrito" es nuestra solución para democratizar este proceso.</p>
 
@@ -96,6 +91,6 @@
 			<div id="contact-msg" class="contact-msg" aria-live="polite"></div>
 		</div>
 
-		<script src="javascript.js"></script>
+		<script src="informacion.js"></script>
 	</body>
 </html>
